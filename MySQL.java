@@ -11,7 +11,7 @@ public class MySQL {
 	private static Connection getConnection() throws ClassNotFoundException, SQLException {
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","JoeCoventry01");
+		Connection con = DriverManager.getConnection("driverURL");
 		return con;
 		
 	}
@@ -21,7 +21,7 @@ public class MySQL {
 		try {
 			Connection con = getConnection();
 			Statement st = con.createStatement();
-			String query = "SELECT * FROM test.database WHERE email = '" + email + "'";
+			String query = "SELECT * FROM example.database WHERE email = '" + email + "'";
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next()) {
 				pw.append(rs.getString("hash"));
@@ -41,7 +41,7 @@ public class MySQL {
 		try {
 			Connection con = getConnection();
 			Statement st = con.createStatement();
-			String query = "SELECT * FROM test.database WHERE email = '" + email + "'";
+			String query = "SELECT * FROM example.database WHERE email = '" + email + "'";
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next()) {
 				pw.append(rs.getString("salt"));
@@ -60,7 +60,7 @@ public class MySQL {
 		try {
 			Connection con = getConnection();
 			Statement st = con.createStatement();
-			String query = "SELECT email FROM test.database";
+			String query = "SELECT email FROM example.database";
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next()) {
 				if(rs.getString("email").equals(email)) return true;
