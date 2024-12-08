@@ -65,7 +65,7 @@ public class MyFrame extends JFrame implements ActionListener {
 		pw.setForeground(Color.white);
 		panel.add(pw,"center,wrap 15px");
 		
-		ImageIcon image = new ImageIcon("C:\\Users\\JoeCa\\eclipse-workspace\\SimpleAuthenticator\\Images\\image1.png");
+		ImageIcon image = new ImageIcon("imageURL");
 		
 		button = new JButton(image);
 		button.setFocusable(false);
