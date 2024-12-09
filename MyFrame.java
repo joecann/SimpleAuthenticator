@@ -119,22 +119,31 @@ public class MyFrame extends JFrame implements ActionListener {
 			else {		
 				String password = String.valueOf(pw.getPassword());
 				try {
-					if(Authenticate.email(email)) {						
-						if(Authenticate.password(email, password)) {
-							infolabel.setForeground(Color.green);
-							infolabel.setText("Login attempted successfully!");
-							infolabel.setVisible(true);
-							resetComponents();
-							return;
-						}
+					if(! Authenticate.email(email)) {	
+						infolabel.setForeground(Color.red);
+						infolabel.setText("Email not found");
+						infolabel.setVisible(true);
+						resetComponents();
+						return;
 					}
-				} catch (NoSuchAlgorithmException | InvalidKeySpecException e1) {
+						
+					else if(Authenticate.password(email, password)) {
+						infolabel.setForeground(Color.green);
+						infolabel.setText("Login attempted successfully!");
+						infolabel.setVisible(true);
+						resetComponents();
+						return;
+					}
+					infolabel.setForeground(Color.red);
+					infolabel.setText("Login attempted falied!");
+					infolabel.setVisible(true);
+					resetComponents();
+					
+				} 
+				
+				catch (NoSuchAlgorithmException | InvalidKeySpecException e1) {
 					e1.printStackTrace();
-				}
-				infolabel.setForeground(Color.red);
-				infolabel.setText("Login attempted falied!");
-				infolabel.setVisible(true);
-				resetComponents();					
+				}		
 			}
 		}
 	}
