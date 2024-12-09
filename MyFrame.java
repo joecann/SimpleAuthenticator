@@ -129,13 +129,13 @@ public class MyFrame extends JFrame implements ActionListener {
 						
 					else if(Authenticate.password(email, password)) {
 						infolabel.setForeground(Color.green);
-						infolabel.setText("Login attempted successfully!");
+						infolabel.setText("Login attempt successful!");
 						infolabel.setVisible(true);
 						resetComponents();
 						return;
 					}
 					infolabel.setForeground(Color.red);
-					infolabel.setText("Login attempted falied!");
+					infolabel.setText("Login attempt falied!");
 					infolabel.setVisible(true);
 					resetComponents();
 					
