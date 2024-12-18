@@ -6,6 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Authenticate {
+
+	private Authenticate() {}
 	
 	public static boolean validateEmail(String email) {
 		String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
