@@ -8,6 +8,8 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.SecretKeyFactory;
 
 public class Hashing {
+
+	private Hashing() {}
 	
 	public static String hashPassword(String password, String salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		
