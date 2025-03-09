@@ -68,7 +68,7 @@ public class MyFrame extends JFrame implements ActionListener {
 		infolabel.setVisible(false);
 		panel.add(infolabel,"span, center");
 		
-		ImageIcon image = new ImageIcon("C:\\Users\\JoeCa\\eclipse-workspace\\SimpleAuthenticator\\Images\\image1.png");
+		ImageIcon image = new ImageIcon("image path");
 		
 		this.setBackground(Color.BLACK);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
