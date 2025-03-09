@@ -10,16 +10,13 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
-
 import net.miginfocom.swing.MigLayout;
 
 public class MyFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
-	private JButton button;
+	private JButton loginButton,cancelButton;
 	private JTextField emailAddress;
 	private JPasswordField pw;
 	private JLabel infolabel;
@@ -27,67 +24,57 @@ public class MyFrame extends JFrame implements ActionListener {
 	public MyFrame() {
 		panel = new JPanel();
 		panel.setPreferredSize(new Dimension(400,400));
-		panel.setBackground(new Color(28,28,29));
-		panel.setLayout(new MigLayout("center"));
-			
-		JLabel label = new JLabel();
-		label.setText("Password Authenticator");
-		label.setFont(new Font(null,Font.BOLD, 30));
-		label.setForeground(Color.white);
-		panel.add(label,"center,wrap 40px");
+		panel.setLayout(new MigLayout("wrap 2, insets 100 20 20 20"));
+					
+		JLabel emailText = new JLabel();
+		emailText.setText("Username");
+		emailText.setFont(new Font(null,Font.BOLD, 12));
+		emailText.setForeground(Color.black);
+		panel.add(emailText);		
 		
 		emailAddress = new JTextField();
-		emailAddress.setColumns(30);
-		emailAddress.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createBevelBorder(BevelBorder.LOWERED), 
-				"Email Address",
-				TitledBorder.LEFT,
-				TitledBorder.ABOVE_TOP,
-				null,
-				Color.white));
-		emailAddress.setBackground(new Color(28,28,29));
-		emailAddress.setFont(new Font(null,Font.BOLD,18));
-		emailAddress.setForeground(Color.white);
-		panel.add(emailAddress,"center,wrap 15px");
+		emailAddress.setColumns(40);
+		emailAddress.setFont(new Font(null,Font.PLAIN,15));
+		panel.add(emailAddress, "gapbottom 10");
+		
+		JLabel pwText = new JLabel();
+		pwText.setText("Password");
+		pwText.setFont(new Font(null,Font.BOLD, 12));
+		pwText.setForeground(Color.black);
+		panel.add(pwText);
 		
 		pw = new JPasswordField();
 		pw.setText("");
-		pw.setColumns(30);
-		pw.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createBevelBorder(BevelBorder.LOWERED), 
-				"Password",
-				TitledBorder.LEFT,
-				TitledBorder.ABOVE_TOP,
-				null,
-				Color.white));
-		pw.setBackground(new Color(28,28,29));
-		pw.setFont(new Font(null,Font.BOLD,18));
-		pw.setForeground(Color.white);
-		panel.add(pw,"center,wrap 15px");
+		pw.setColumns(50);
+		pw.setFont(new Font(null,Font.PLAIN,15));
+		panel.add(pw);
 		
-		ImageIcon image = new ImageIcon("imageURL");
+		cancelButton = new JButton("Cancel");
+		cancelButton.setFocusable(false);
+		cancelButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		cancelButton.addActionListener(this);
+		//panel.add(cancelButton,"span, split 2, center, gaptop 30");
 		
-		button = new JButton(image);
-		button.setFocusable(false);
-		button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		button.addActionListener(this);
-		button.setContentAreaFilled(false);
-		button.setBorder(null);
-		button.setOpaque(true);
-		panel.add(button,"center, wrap 20px");
-		
+		loginButton = new JButton("Login");
+		loginButton.setFocusable(false);
+		loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		loginButton.addActionListener(this);
+		panel.add(loginButton, "span, center, gaptop 30");
+				
 		infolabel = new JLabel();
 		infolabel.setText("");
 		infolabel.setFont(new Font(null,Font.ITALIC, 15));
 		infolabel.setForeground(Color.red);
 		infolabel.setVisible(false);
-		panel.add(infolabel,"center");
+		panel.add(infolabel,"span, center");
 		
+		ImageIcon image = new ImageIcon("C:\\Users\\JoeCa\\eclipse-workspace\\SimpleAuthenticator\\Images\\image1.png");
 		
 		this.setBackground(Color.BLACK);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setTitle("Simple Authenticator");
+		this.setIconImage(image.getImage());
 		this.add(panel);
 		this.pack();
 		this.setLocationRelativeTo(null);
@@ -101,7 +88,7 @@ public class MyFrame extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == button) {
+		if(e.getSource() == loginButton) {
 			if(infolabel.isVisible()) infolabel.setVisible(false);			
 				
 			String email = emailAddress.getText();					
@@ -121,7 +108,7 @@ public class MyFrame extends JFrame implements ActionListener {
 				try {
 					if(! Authenticate.email(email)) {	
 						infolabel.setForeground(Color.red);
-						infolabel.setText("Email not found");
+						infolabel.setText("User not found");
 						infolabel.setVisible(true);
 						resetComponents();
 						return;
@@ -137,18 +124,19 @@ public class MyFrame extends JFrame implements ActionListener {
 					infolabel.setForeground(Color.red);
 					infolabel.setText("Login attempt falied!");
 					infolabel.setVisible(true);
-					resetComponents();
-					
+					resetComponents();		
+						
 				} 
 				
 				catch (NoSuchAlgorithmException | InvalidKeySpecException e1) {
 					e1.printStackTrace();
-				}		
+				}
+							
 			}
 		}
 	}
 	
 	public static void main(String[] args) {
-		new MyFrame();
+		new MyFrame();  //example@sky.com coventry02
 	}
 }
